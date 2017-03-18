@@ -1,0 +1,29 @@
+From ab0e91cf9584796bb0244de6720b9a1194f69f32 Mon Sep 17 00:00:00 2001
+From: Adam YH Lee <adam.yh.lee@gmail.com>
+Date: Thu, 17 Apr 2014 11:58:17 -0700
+Subject: [PATCH] Check if unit-testing is enabled
+
+CATKIN_ENABLE_TESTING is a late addition to catkin. This updates the
+package to comply with the strict checking rule.
+---
+ turtlebot_description/CMakeLists.txt |    6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/turtlebot_description/CMakeLists.txt b/turtlebot_description/CMakeLists.txt
+index 37b7dc0..7d730c2 100644
+--- a/turtlebot_description/CMakeLists.txt
++++ b/turtlebot_description/CMakeLists.txt
+@@ -20,5 +20,9 @@ install(DIRECTORY urdf
+         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+ )
+ 
+-catkin_add_gtest(${PROJECT_NAME}_test_urdf test/test_urdf.cpp)
++if(CATKIN_ENABLE_TESTING)
++
++	catkin_add_gtest(${PROJECT_NAME}_test_urdf test/test_urdf.cpp)
++
++endif()
+ 
+-- 
+1.7.9.5
+
